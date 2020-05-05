@@ -22,5 +22,8 @@ def GetHostName(ipAddr):
   child.sendline('exit')
   print('Logged out')
 
-GetHostName('192.168.0.111')
+Addresses = ['192.168.0.111', '192.168.0.112', '192.168.0.121', '192.168.0.122']
+for address in Addresses:
+  GetHostName(address)
+
 
