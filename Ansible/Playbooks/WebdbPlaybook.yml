@@ -4,6 +4,11 @@
   - name: install apache
     yum: name=httpd state=latest
 
+  - name: start Apache
+    service:
+      name: httpd
+      state: started
+
   - name: Auto-start Apache
     service:
       name: httpd
@@ -24,6 +29,11 @@
   tasks:
   - name: Install MySQL
     yum: name=mysql-server state=latest
+
+  - name: start MySQL
+    service:
+      name: mysqld
+      state: started
 
   - name: Auto-start MySQL
     service:
