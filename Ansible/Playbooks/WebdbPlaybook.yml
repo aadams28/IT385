@@ -1,0 +1,43 @@
+---
+- hosts: web
+  tasks:
+  - name: install apache
+    yum: name=httpd state=latest
+
+  - name: Auto-start Apache
+    service:
+      name: httpd
+      enabled: yes
+  
+  - name: Add user "edgoad"
+    user:
+      name: edgoad
+
+  - name: Set empty password
+    command: passwd -d edgoad
+
+  - name: Expire password
+    command: chage -d 0 edgoad
+  become: yes
+
+- hosts: db
+  tasks:
+  - name: Install MySQL
+    yum: name=mysql-server state=latest
+
+  - name: Auto-start MySQL
+    service:
+      name: mysqld
+      enabled: yes
+ 
+  - name: Add user "edgoad"
+    user:
+      name: edgoad
+
+  - name: Set empty password
+    command: passwd -d edgoad
+
+  - name: Expire password
+    command: chage -d 0 edgoad
+  become: yes
+

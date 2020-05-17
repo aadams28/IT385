@@ -1,0 +1,14 @@
+---
+- hosts: db
+  tasks:
+   - name: Install MySQL
+     yum: name=mysql-server state=latest
+  
+   - name: Auto-start MySQL
+     service:
+      name: mysqld
+      enabled: yes
+
+  become: yes
+
+
