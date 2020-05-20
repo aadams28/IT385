@@ -1,0 +1,60 @@
+---
+- hosts: all
+  tasks:
+  - name: Create user (egoad/RubberDuck!)
+    become: yes
+    user:
+      name: egoad
+      password: '$6$PwVyDDsBH/jIqaU5$QZ2odwBhhTTl.erW73dHGwN0TQBycy6aLX8.gK3.BB9h/7NPiIVvWoz4o57rz.lrV9Ii155jv5IRSig.M/kY8/'   
+  - name: Create second user
+    become: yes
+    user:
+      name: logitech
+      password: "{{ 'Password01' | password_hash('sha512') }}"
+  - name: Create third user
+    become: yes
+    user: name="dell" password="garbage"
+
+- hosts: db
+  tasks:
+  - name: Install MariaDB
+    become: yes
+    yum:
+      name: 'mariadb-server'
+      state: present
+  - name: Enable MariaDB (set to autostart)
+    become: yes
+    service:
+      name: 'mysqld'
+      enabled: yes
+  - name: start  MariaDB
+    become: yes
+    service:
+      name: 'mysqld'
+      state: started
+
+- hosts: web
+  tasks:
+  - name: Install Apache (httpd)
+    become: yes
+    yum: name='httpd' state=present
+  - name: Set Apache to run
+    become: yes
+    service: name='httpd' state=started enabled=yes
+  - name: Configure firewall
+    become: yes
+    firewalld:
+      service: http
+      state: enabled
+      permanent: true
+    notify:
+      - restart-firewall
+  
+  handlers:
+    - name: restart-firewall
+      become: yes
+      service:
+        name: firewalld
+        state: restarted
+
+
