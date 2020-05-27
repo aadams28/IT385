@@ -15,3 +15,9 @@
      file:
        dest: /tmp/ans/web-file
        state: '{{file_state}}'
+- hosts: web1
+  tasks:
+  - name: Create only on Web1
+    file:
+       dest: /tmp/ans/WEB1-file
+       state: '{{file_state}}'
