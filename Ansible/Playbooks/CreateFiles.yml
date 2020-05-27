@@ -9,3 +9,9 @@
     file:
       dest: /tmp/ans/all-file
       state: '{{file_state}}'
+- hosts: web
+  task:
+  -  name: Create web file on web machines
+    file:
+      dest: /tmp/ans/web-file
+      state: '{{file_state}}'
