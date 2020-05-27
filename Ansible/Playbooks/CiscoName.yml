@@ -1,0 +1,8 @@
+---
+- hosts: routers
+  gather_facts: false
+  connection: local
+  tasks:
+  - name: Update hostname
+    ios_config:
+      lines: hostname {{inventory_hostname}}
