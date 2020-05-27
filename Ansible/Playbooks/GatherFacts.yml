@@ -1,5 +1,6 @@
 ---
 - hosts: web1
+  gather_facts: false
   tasks:
   - name: Report facts
     debug:
