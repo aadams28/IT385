@@ -1,0 +1,47 @@
+---
+- hosts: all
+  tasks:
+  - name: Remove user (egoad/RubberDuck!)
+    become: yes
+    user:
+      name: egoad
+      state: absent
+      remove: yes 
+  - name: Remove second user
+    become: yes
+    user:
+      name: logitech
+      state: absent
+      remove: yes
+  - name: remove third user
+    become: yes
+    user:
+      name: dell
+      state: absent
+      remove: yes
+
+- hosts: db
+  tasks:
+  - name: Remove MariaDB
+    become: yes
+    yum: name='mysql-community-server' state=absent
+- hosts: web
+  tasks:
+  - name: Remove Apache (httpd)
+    become: yes
+    yum: name='httpd' state=absent
+  - name: Configure firewall
+    become: yes
+    firewalld:
+      service: http
+      state: enabled
+      permanent: true
+    notify:
+      - restart-firewall
+  
+  handlers:
+    - name: restart-firewall
+      become: yes
+      service:
+        name: firewalld
+        state: restarted

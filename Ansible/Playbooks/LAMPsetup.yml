@@ -25,12 +25,12 @@
   - name: Enable MariaDB (set to autostart)
     become: yes
     service:
-      name: 'mysqld'
+      name: mysqld
       enabled: yes
   - name: start  MariaDB
     become: yes
     service:
-      name: 'mysqld'
+      name: mysqld
       state: started
 
 - hosts: web
