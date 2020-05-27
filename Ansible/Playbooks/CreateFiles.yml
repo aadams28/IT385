@@ -8,22 +8,10 @@
   - name: Create sample file for all systems
     file:
       dest: /tmp/ans/all-file
-      state: '{{file_state}}'
-- hosts: web
-  tasks:
-  -  name: Create web file on web machines
-     file:
-       dest: /tmp/ans/web-file
-       state: '{{file_state}}'
-- hosts: web1
-  tasks:
-  - name: Create only on Web1
+      state: touch
+    tags: create
+  - name: Create sample file for all systems
     file:
-       dest: /tmp/ans/WEB1-file
-       state: '{{file_state}}'
-- hosts: all:!backup
-  tasks:
-  - name: Create on all but backup
-    file:
-      dest: /tmp/ans/not-backup-file
-      state: '{{file_state}}'
+      dest: /tmp/ans/all-file
+      state: absent
+    tags: remove
