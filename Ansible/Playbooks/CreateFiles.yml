@@ -5,3 +5,7 @@
     file:
       dest: /tmp/ans
       state: directory
+  - name: Create sample file for all systems
+    file:
+      dest: /tmp/ans/all-file
+      state: touch
