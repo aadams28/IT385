@@ -1,0 +1,6 @@
+---
+- hosts: web1
+  tasks:
+  - name: Report facts
+    debug:
+      var: ansible_facts
