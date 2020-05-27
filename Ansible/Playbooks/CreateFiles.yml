@@ -8,4 +8,4 @@
   - name: Create sample file for all systems
     file:
       dest: /tmp/ans/all-file
-      state: touch
+      state: '{{file_state}}'
