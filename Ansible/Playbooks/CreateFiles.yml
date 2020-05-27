@@ -21,3 +21,9 @@
     file:
        dest: /tmp/ans/WEB1-file
        state: '{{file_state}}'
+- hosts: all:!backup
+  tasks:
+  - name: Create on all but backup
+    file:
+      dest: /tmp/ans/not-backup-file
+      state: '{{file_state}}'
