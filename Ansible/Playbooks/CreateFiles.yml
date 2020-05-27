@@ -12,6 +12,6 @@
 - hosts: web
   task:
   -  name: Create web file on web machines
-    file:
-      dest: /tmp/ans/web-file
-      state: '{{file_state}}'
+     file:
+       dest: /tmp/ans/web-file
+       state: '{{file_state}}'
