@@ -37,3 +37,11 @@
       - login block-for 180 attempts 4 within 120
       - security passwords min-length 10
       - banner motd %Warning Unauthorized Access is Prohibited!%
+  - name: show run
+    ios_command:
+      commands:
+      - sh run
+    register: nwconfig
+  - name: Report information
+    debug:
+      var: nwconfig
