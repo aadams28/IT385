@@ -45,3 +45,141 @@
   - name: Report information
     debug:
       var: nwconfig
+- hosts: Router2
+  gather_facts: false
+  connection: local
+  tasks:
+  - name: Update hostname
+    ios_config:
+      lines: hostname R2
+  - name: Configure interface settings
+    ios_config:
+      lines:
+        - description IP addressing
+        - ip address 10.75.98.1 255.0.0.0
+      parents: interface GigabitEthernet2
+  - name: Disable DNS lookup
+    ios_system:
+      lookup_source: G1
+      lookup_enabled: no
+  - name: Configure services
+    ios_config:
+      lines:
+         - service password-encryption
+  - name: Run CLI commands
+    ios_command:
+      commands:
+      - en
+      - conf t
+      - enable secret Ciscoenpa55
+      - line console 0
+      - exec-timeout 5
+      - password Cisconpa55
+      - login
+      - exit
+      - line vty 0 15
+      - exec-timeout 5
+      - exit
+      - login block-for 180 attempts 4 within 120
+      - security passwords min-length 10
+      - banner motd %Warning Unauthorized Access is Prohibited!%
+  - name: show run
+    ios_command:
+      commands:
+      - sh run
+    register: nwconfig
+  - name: Report information
+    debug:
+      var: nwconfig
+- hosts: Switch1
+  gather_facts: false
+  connection: local
+  tasks:
+  - name: Update hostname
+    ios_config:
+      lines: hostname S1
+  - name: Configure interface settings
+    ios_config:
+      lines:
+        - description IP addressing
+        - ip address 10.15.2.2 255.0.0.0
+      parents: interface FastEthernet2
+  - name: Disable DNS lookup
+    ios_system:
+      lookup_source: F1
+      lookup_enabled: no
+  - name: Configure services
+    ios_config:
+      lines:
+         - service password-encryption
+  - name: Run CLI commands
+    ios_command:
+      commands:
+      - en
+      - conf t
+      - enable secret Ciscoenpa55
+      - line console 0
+      - exec-timeout 5
+      - password Cisconpa55
+      - login
+      - exit
+      - line vty 0 15
+      - exec-timeout 5
+      - exit
+      - login block-for 180 attempts 4 within 120
+      - security passwords min-length 10
+      - banner motd %Warning Unauthorized Access is Prohibited!%
+  - name: show run
+    ios_command:
+      commands:
+      - sh run
+    register: nwconfig
+  - name: Report information
+    debug:
+      var: nwconfig
+- hosts: Switch2
+  gather_facts: false
+  connection: local
+  tasks:
+  - name: Update hostname
+    ios_config:
+      lines: hostname S2
+  - name: Configure interface settings
+    ios_config:
+      lines:
+        - description IP addressing
+        - ip address 10.78.98.2 255.0.0.0
+      parents: interface FastEthernet2
+  - name: Disable DNS lookup
+    ios_system:
+      lookup_source: F1
+      lookup_enabled: no
+  - name: Configure services
+    ios_config:
+      lines:
+         - service password-encryption
+  - name: Run CLI commands
+    ios_command:
+      commands:
+      - en
+      - conf t
+      - enable secret Ciscoenpa55
+      - line console 0
+      - exec-timeout 5
+      - password Cisconpa55
+      - login
+      - exit
+      - line vty 0 15
+      - exec-timeout 5
+      - exit
+      - login block-for 180 attempts 4 within 120
+      - security passwords min-length 10
+      - banner motd %Warning Unauthorized Access is Prohibited!%
+  - name: show run
+    ios_command:
+      commands:
+      - sh run
+    register: nwconfig
+  - name: Report information
+    debug:
+      var: nwconfig
