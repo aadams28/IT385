@@ -1,0 +1,13 @@
+---
+- hosts: web
+  vars:
+    list_of_packages:
+    - httpd
+    - mariadb-server
+    - php
+  tasks:
+  - name: install software
+    become: yes
+    yum:
+      name: "{{ list_of_packages }}"
+      state: present
