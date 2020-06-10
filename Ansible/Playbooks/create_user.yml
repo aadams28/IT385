@@ -1,0 +1,7 @@
+---
+- name: Creating user "{{ user_name }}"
+  user:
+    name: "{{ user_name }}"
+    password: "RubberDuck"
+    state: "{{ user_state }}"
+  become: yes

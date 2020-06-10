@@ -1,0 +1,29 @@
+---
+- hosts: windows
+  tasks:
+  - name: Create domain group
+    win_domain_group:
+      name: Domain Bros
+      scope: global
+      path: OU=groups,DC=it385,DC=local    
+
+  - name: Create a domain user
+    win_domain_user:
+      name: Doodbro
+      upn: Doodbro@it385.local
+      groups:
+        - Domain Bros                                             
+
+  - name: Create another domain user
+    win_domain_user:
+      name: Broseph
+      upn: Broseph@it385.local
+      groups:
+        - Domain Bros    
+
+  - name: Create a domain admin account
+    win_domain_user:
+      name: Brometheus
+      upn: Brometheus@it385.local
+      groups:
+        - Domain Admins     
