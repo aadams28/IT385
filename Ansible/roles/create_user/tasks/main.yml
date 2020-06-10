@@ -1,2 +1,6 @@
 ---
 # tasks file for roles/create_user
+- name: create user
+    user:
+      name: "{{ user_name }}"
+      state: "{{ user_state }}"
