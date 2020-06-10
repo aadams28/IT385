@@ -1,0 +1,7 @@
+---
+# Handlers for apache role
+- name: restart-firewall
+  become: yes
+  service:
+    name: firewalld
+    state: restarted

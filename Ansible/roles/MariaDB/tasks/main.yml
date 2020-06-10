@@ -1,0 +1,17 @@
+---
+# MariaDB tasks
+- name: Install MariaDB
+  become: yes
+  yum:
+    name: 'mariadb-server'
+    state: present
+- name: Enable MariaDB (set to autostart)
+  become: yes
+  service:
+    name: 'mariadb'
+    enabled: yes
+- name: start  MariaDB
+  become: yes
+  service:
+    name: 'mariadb'
+    state: started
