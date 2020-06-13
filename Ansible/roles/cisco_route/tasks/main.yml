@@ -1,0 +1,8 @@
+---
+# tasks for configuring default route
+- name: Run CLI commands
+  ios_command:
+    commands:
+    - en
+    - conf t
+    - ip route 0.0.0.0 0.0.0.0 192.168.0.250
