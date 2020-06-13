@@ -1,0 +1,8 @@
+---
+#task for configuring NTP server
+- name: Run CLI commands
+  ios_command:
+    commands:
+    - en
+    - conf t
+    - ntp server 192.168.0.250

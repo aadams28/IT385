@@ -1,0 +1,8 @@
+---
+#task for configuring SNMPv2 Community String
+- name: Run CLI commands
+  ios_command:
+    commands:
+    - en
+    - conf t
+    - snmp-server community GRCRocks! ro

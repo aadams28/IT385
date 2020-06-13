@@ -1,0 +1,11 @@
+---
+#task for configuring console password
+- name: Run CLI commands
+  ios_command:
+    commands:
+    - en
+    - conf t
+    - line console 0
+    - password GRCCon
+    - login
+    - exit

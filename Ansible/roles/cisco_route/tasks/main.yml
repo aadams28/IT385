@@ -1,5 +1,5 @@
 ---
-# tasks for configuring default route
+# task for configuring default route
 - name: Run CLI commands
   ios_command:
     commands:

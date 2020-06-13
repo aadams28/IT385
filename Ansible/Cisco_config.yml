@@ -4,3 +4,6 @@
   connection: local
   roles:
     - cisco_route
+    - cisco_ntp
+    - cisco_snmp
+    - cisco_pass
